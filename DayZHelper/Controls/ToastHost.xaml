@@ -1,0 +1,20 @@
+<UserControl x:Class="DayZHelper.Controls.ToastHost"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="{x:Null}"
+             IsHitTestVisible="True">
+    <!-- Background must be null (not Transparent) so empty area passes clicks
+         through to the content underneath. The ItemsControl sits in the
+         bottom-right corner; only the toast cards themselves are hit-testable. -->
+    <ItemsControl x:Name="Items"
+                  HorizontalAlignment="Right"
+                  VerticalAlignment="Bottom"
+                  Margin="0,0,16,16"
+                  Background="{x:Null}">
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <StackPanel Background="{x:Null}"/>
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+    </ItemsControl>
+</UserControl>
