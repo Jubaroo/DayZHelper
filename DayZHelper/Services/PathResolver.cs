@@ -24,6 +24,7 @@ public static class PathResolver
             var alt = Path.Combine(oneDrive, "Documents", "DayZ");
             if (Directory.Exists(alt)) return alt;
         }
+
         return docs;
     }
 
@@ -44,7 +45,8 @@ public static class PathResolver
         }
 
         foreach (var candidate in SteamCandidates)
-            if (File.Exists(candidate)) return candidate;
+            if (File.Exists(candidate))
+                return candidate;
 
         return null;
     }

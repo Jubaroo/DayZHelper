@@ -13,7 +13,7 @@
                   Background="{x:Null}">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
-                <StackPanel Background="{x:Null}"/>
+                <StackPanel Background="{x:Null}" />
             </ItemsPanelTemplate>
         </ItemsControl.ItemsPanel>
     </ItemsControl>

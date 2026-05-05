@@ -27,7 +27,10 @@ public sealed class SingleInstance : IDisposable
             client.Connect(500);
             client.WriteByte(1);
         }
-        catch { /* ignore */ }
+        catch
+        {
+            /* ignore */
+        }
     }
 
     public void StartListener(Action onSecondLaunch)
@@ -49,8 +52,14 @@ public sealed class SingleInstance : IDisposable
                 _ = server.ReadByte();
                 Application.Current?.Dispatcher.BeginInvoke(onSecondLaunch);
             }
-            catch (OperationCanceledException) { break; }
-            catch { /* keep listening */ }
+            catch (OperationCanceledException)
+            {
+                break;
+            }
+            catch
+            {
+                /* keep listening */
+            }
         }
     }
 
@@ -61,7 +70,11 @@ public sealed class SingleInstance : IDisposable
         {
             if (_isFirst) _mutex.ReleaseMutex();
         }
-        catch { /* ignore */ }
+        catch
+        {
+            /* ignore */
+        }
+
         _mutex.Dispose();
     }
 }

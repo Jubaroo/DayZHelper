@@ -18,6 +18,7 @@ public partial class CleanupWindow : Window
         public string SizeText => Cleanup.FormatSize(Size);
 
         private bool _selected = true;
+
         public bool Selected
         {
             get => _selected;
@@ -35,15 +36,24 @@ public partial class CleanupWindow : Window
         public Item(FileInfo file)
         {
             File = file;
-            try { Size = file.Length; } catch { Size = 0; }
+            try
+            {
+                Size = file.Length;
+            }
+            catch
+            {
+                Size = 0;
+            }
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
+
         private void OnPropertyChanged([CallerMemberName] string? n = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(n));
     }
 
     public ObservableCollection<Item> Files { get; } = new();
+
     public IReadOnlyList<FileInfo> SelectedForDeletion { get; private set; } =
         Array.Empty<FileInfo>();
 
@@ -55,6 +65,7 @@ public partial class CleanupWindow : Window
             var item = new Item(f) { Owner = this };
             Files.Add(item);
         }
+
         FileList.ItemsSource = Files;
         UpdateSummary();
     }
@@ -72,7 +83,9 @@ public partial class CleanupWindow : Window
         // Sync select-all without retriggering
         SelectAllBox.IsChecked = selected.Count == Files.Count
             ? true
-            : selected.Count == 0 ? false : (bool?)null;
+            : selected.Count == 0
+                ? false
+                : (bool?)null;
     }
 
     private void SelectAll_Click(object sender, RoutedEventArgs e)

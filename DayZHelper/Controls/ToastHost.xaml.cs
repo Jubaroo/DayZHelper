@@ -1,12 +1,20 @@
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Effects;
 using System.Windows.Threading;
 
 namespace DayZHelper.Controls;
 
-public enum ToastKind { Info, Success, Warning, Error }
+public enum ToastKind
+{
+    Info,
+    Success,
+    Warning,
+    Error
+}
 
 public partial class ToastHost : UserControl
 {
@@ -63,10 +71,10 @@ public partial class ToastHost : UserControl
     {
         var (bgKey, fgKey, glyph) = kind switch
         {
-            ToastKind.Success => ("SuccessBrush",  "TextBrush", "\uE73E"),
-            ToastKind.Warning => ("WarningBrush",  "TextBrush", "\uE7BA"),
-            ToastKind.Error   => ("DangerBrush",   "TextBrush", "\uEA39"),
-            _                 => ("AccentBrush",   "TextBrush", "\uE946")
+            ToastKind.Success => ("SuccessBrush", "TextBrush", "\ue73e"),
+            ToastKind.Warning => ("WarningBrush", "TextBrush", "\ue7ba"),
+            ToastKind.Error => ("DangerBrush", "TextBrush", "\uea39"),
+            _ => ("AccentBrush", "TextBrush", "\ue946")
         };
 
         var iconStripe = new Border
@@ -115,15 +123,15 @@ public partial class ToastHost : UserControl
             CornerRadius = new CornerRadius(8),
             MinWidth = 260,
             Margin = new Thickness(0, 8, 0, 0),
-            Cursor = System.Windows.Input.Cursors.Hand,
+            Cursor = Cursors.Hand,
             Opacity = 0,
             RenderTransform = new TranslateTransform(0, 30),
-            Effect = new System.Windows.Media.Effects.DropShadowEffect
+            Effect = new DropShadowEffect
             {
                 BlurRadius = 18,
                 ShadowDepth = 4,
-                Opacity = 0.35,
-                Color = Colors.Black
+                Opacity = (double)Application.Current.FindResource("ShadowOpacity"),
+                Color = (Color)Application.Current.FindResource("ShadowColor")
             },
             Child = grid
         };

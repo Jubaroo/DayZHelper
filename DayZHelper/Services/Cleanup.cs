@@ -41,9 +41,16 @@ public static class Cleanup
         long total = 0;
         foreach (var f in files)
         {
-            try { total += f.Length; }
-            catch { /* file vanished */ }
+            try
+            {
+                total += f.Length;
+            }
+            catch
+            {
+                /* file vanished */
+            }
         }
+
         return new CleanupPlan(files, total);
     }
 
@@ -75,11 +82,15 @@ public static class Cleanup
             {
                 Directory.CreateDirectory(LogDir);
                 using var sw = new StreamWriter(LogPath, append: true);
-                sw.WriteLine($"--- {DateTime.Now:yyyy-MM-dd HH:mm:ss}  deleted={count} bytes={bytes} failed={failures.Count} ---");
+                sw.WriteLine(
+                    $"--- {DateTime.Now:yyyy-MM-dd HH:mm:ss}  deleted={count} bytes={bytes} failed={failures.Count} ---");
                 foreach (var d in deletedNames) sw.WriteLine("DEL\t" + d);
                 foreach (var f in failures) sw.WriteLine("ERR\t" + f);
             }
-            catch { /* logging is best-effort */ }
+            catch
+            {
+                /* logging is best-effort */
+            }
         }
 
         return new CleanupResult(count, bytes, failures);

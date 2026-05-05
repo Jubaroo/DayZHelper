@@ -13,9 +13,9 @@ public static class WindowEffects
     private const int DWMWA_CAPTION_COLOR = 35;
 
     private const int DWMSBT_AUTO = 0;
-    private const int DWMSBT_MAINWINDOW = 2;     // Mica
+    private const int DWMSBT_MAINWINDOW = 2; // Mica
     private const int DWMSBT_TRANSIENTWINDOW = 3; // Acrylic
-    private const int DWMSBT_TABBEDWINDOW = 4;    // Mica Alt
+    private const int DWMSBT_TABBEDWINDOW = 4; // Mica Alt
 
     [DllImport("dwmapi.dll", PreserveSig = true)]
     private static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int value, int size);

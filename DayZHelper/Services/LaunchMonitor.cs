@@ -14,8 +14,12 @@ public static class LaunchMonitor
             {
                 if (Process.GetProcessesByName(name).Length > 0) return true;
             }
-            catch { /* ignore */ }
+            catch
+            {
+                /* ignore */
+            }
         }
+
         return false;
     }
 
@@ -29,6 +33,7 @@ public static class LaunchMonitor
             if (IsDayzRunning()) return true;
             await Task.Delay(750, ct);
         }
+
         return false;
     }
 }

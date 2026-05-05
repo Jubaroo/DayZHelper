@@ -4,7 +4,12 @@ using Microsoft.Win32;
 
 namespace DayZHelper.Services;
 
-public enum AppTheme { System, Dark, Light }
+public enum AppTheme
+{
+    System,
+    Dark,
+    Light
+}
 
 public static class ThemeManager
 {
@@ -19,14 +24,14 @@ public static class ThemeManager
 
     public static readonly (string Name, Color Color)[] AccentPresets =
     {
-        ("Orange",  Color.FromRgb(0xE4, 0x58, 0x26)),
+        ("Orange", Color.FromRgb(0xE4, 0x58, 0x26)),
         ("Crimson", Color.FromRgb(0xE0, 0x48, 0x48)),
-        ("Amber",   Color.FromRgb(0xE6, 0xB4, 0x50)),
+        ("Amber", Color.FromRgb(0xE6, 0xB4, 0x50)),
         ("Emerald", Color.FromRgb(0x42, 0xC9, 0x7A)),
-        ("Cyan",    Color.FromRgb(0x3D, 0xC2, 0xCC)),
-        ("Blue",    Color.FromRgb(0x4D, 0x8E, 0xFF)),
-        ("Violet",  Color.FromRgb(0x9B, 0x6B, 0xFF)),
-        ("Pink",    Color.FromRgb(0xE2, 0x68, 0xB3)),
+        ("Cyan", Color.FromRgb(0x3D, 0xC2, 0xCC)),
+        ("Blue", Color.FromRgb(0x4D, 0x8E, 0xFF)),
+        ("Violet", Color.FromRgb(0x9B, 0x6B, 0xFF)),
+        ("Pink", Color.FromRgb(0xE2, 0x68, 0xB3)),
     };
 
     public static void Apply(AppTheme mode, Color? accent = null)
@@ -64,7 +69,11 @@ public static class ThemeManager
                 @"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize");
             if (key?.GetValue("AppsUseLightTheme") is int v) return v == 0;
         }
-        catch { /* ignore */ }
+        catch
+        {
+            /* ignore */
+        }
+
         return true;
     }
 
@@ -92,9 +101,11 @@ public static class ThemeManager
                     (src.OriginalString.EndsWith("Dark.xaml") ||
                      src.OriginalString.EndsWith("Light.xaml")))
                 {
-                    found = i; break;
+                    found = i;
+                    break;
                 }
             }
+
             if (found >= 0)
             {
                 dicts.RemoveAt(found);
@@ -105,6 +116,7 @@ public static class ThemeManager
                 dicts.Insert(0, newDict);
             }
         }
+
         _themeDict = newDict;
     }
 
@@ -149,9 +161,11 @@ public static class ThemeManager
                 if (dicts[i].Source is { } src &&
                     src.OriginalString.EndsWith("Accent.xaml"))
                 {
-                    found = i; break;
+                    found = i;
+                    break;
                 }
             }
+
             if (found >= 0)
             {
                 dicts.RemoveAt(found);
@@ -163,6 +177,7 @@ public static class ThemeManager
                 dicts.Add(rd);
             }
         }
+
         _accentDict = rd;
     }
 

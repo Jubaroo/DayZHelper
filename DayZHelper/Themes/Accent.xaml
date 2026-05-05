@@ -7,14 +7,14 @@
     <Color x:Key="AccentPressedColor">#FFC0451E</Color>
     <Color x:Key="AccentMutedColor">#33E45826</Color>
 
-    <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
-    <SolidColorBrush x:Key="AccentHoverBrush" Color="{StaticResource AccentHoverColor}"/>
-    <SolidColorBrush x:Key="AccentPressedBrush" Color="{StaticResource AccentPressedColor}"/>
-    <SolidColorBrush x:Key="AccentMutedBrush" Color="{StaticResource AccentMutedColor}"/>
+    <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="AccentHoverBrush" Color="{StaticResource AccentHoverColor}" />
+    <SolidColorBrush x:Key="AccentPressedBrush" Color="{StaticResource AccentPressedColor}" />
+    <SolidColorBrush x:Key="AccentMutedBrush" Color="{StaticResource AccentMutedColor}" />
 
     <LinearGradientBrush x:Key="AccentGradientBrush" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="{StaticResource AccentHoverColor}" Offset="0"/>
-        <GradientStop Color="{StaticResource AccentColor}" Offset="1"/>
+        <GradientStop Color="{StaticResource AccentHoverColor}" Offset="0" />
+        <GradientStop Color="{StaticResource AccentColor}" Offset="1" />
     </LinearGradientBrush>
 
 </ResourceDictionary>

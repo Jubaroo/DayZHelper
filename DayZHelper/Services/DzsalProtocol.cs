@@ -46,6 +46,7 @@ public static class DzsalProtocol
             {
                 cmdKey!.SetValue("", $"\"{launcher}\" \"%1\"");
             }
+
             return (true, null);
         }
         catch (Exception ex)
